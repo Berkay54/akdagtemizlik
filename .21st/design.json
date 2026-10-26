@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "project": {
+    "name": "izmir-temizlik",
+    "productType": null,
+    "stack": [
+      "react",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/index.css",
+      "src/app.css"
+    ],
+    "components": [],
+    "assets": [
+      "src/assets"
+    ],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--color-paper": {
+        "value": "#f7faff",
+        "source": "src/index.css"
+      },
+      "--color-ink": {
+        "value": "#10274b",
+        "source": "src/index.css"
+      },
+      "--color-muted": {
+        "value": "#53657e",
+        "source": "src/index.css"
+      },
+      "--color-accent": {
+        "value": "#2158e5",
+        "source": "src/index.css"
+      },
+      "--color-accent-hover": {
+        "value": "#1643ba",
+        "source": "src/index.css"
+      },
+      "--color-line": {
+        "value": "#d8e3f3",
+        "source": "src/index.css"
+      },
+      "--color-navy": {
+        "value": "#102e62",
+        "source": "src/index.css"
+      },
+      "--color-slide": {
+        "value": "#d9e9ff",
+        "source": "src/index.css"
+      },
+      "--color-slide-alt": {
+        "value": "#c7dafa",
+        "source": "src/index.css"
+      },
+      "--color-slide-third": {
+        "value": "#dfedfa",
+        "source": "src/index.css"
+      },
+      "--color-controls": {
+        "value": "#edf3ff",
+        "source": "src/index.css"
+      },
+      "--color-on-dark-muted": {
+        "value": "#dbe7ff",
+        "source": "src/index.css"
+      }
+    },
+    "typography": {},
+    "spacing": {
+      "--page-gutter": {
+        "value": "clamp(24px, 5.55vw, 96px)",
+        "source": "src/index.css"
+      }
+    },
+    "radius": {},
+    "shadows": {},
+    "motion": {
+      "--ease-out": {
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "source": "src/index.css"
+      }
+    },
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": []
+  },
+  "decisions": [],
+  "evidence": [
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/index.css, src/app.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/index.css"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-10-26T12:37:54.134Z"
+}

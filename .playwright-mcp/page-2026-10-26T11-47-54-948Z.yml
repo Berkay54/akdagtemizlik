@@ -1,0 +1,44 @@
+- generic [ref=e2]:
+  - link "İçeriğe geç" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - link "ARIN ana sayfa" [ref=e5] [cursor=pointer]:
+      - /url: "#main"
+      - text: ARIN.
+    - navigation "Ana menü" [ref=e6]:
+      - button "Hizmetler" [ref=e7] [cursor=pointer]
+      - button "Hakkımızda" [ref=e8] [cursor=pointer]
+      - button "Bölgeler" [ref=e9] [cursor=pointer]
+      - button "İletişim" [ref=e10] [cursor=pointer]
+    - link "Fiyat Teklifi Al — WhatsApp, yeni sekmede açılır" [ref=e12] [cursor=pointer]:
+      - /url: https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20apartman%C4%B1m%C4%B1z%20i%C3%A7in%20temizlik%20hizmeti%20hakk%C4%B1nda%20fiyat%20teklifi%20almak%20istiyorum.
+      - generic [ref=e13]: Fiyat Teklifi Al
+  - main [ref=e17]:
+    - region [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: KARŞIYAKA · ÇİĞLİ · İZMİR
+          - heading "Temizliğin yeni standardı." [level=1] [ref=e23]:
+            - generic [ref=e24]: Temizliğin
+            - generic [ref=e26]: yeni standardı.
+          - paragraph [ref=e28]: Karşıyaka, Çiğli ve çevresinde apartman merdivenleri ve ortak yaşam alanları için düzenli, titiz ve profesyonel temizlik hizmeti.
+          - generic [ref=e29]:
+            - link "Fiyat Teklifi Al — WhatsApp, yeni sekmede açılır" [ref=e30] [cursor=pointer]:
+              - /url: https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20apartman%C4%B1m%C4%B1z%20i%C3%A7in%20temizlik%20hizmeti%20hakk%C4%B1nda%20fiyat%20teklifi%20almak%20istiyorum.
+              - generic [ref=e31]: Fiyat Teklifi Al
+            - button "Hizmetleri İncele" [ref=e35] [cursor=pointer]
+          - paragraph [ref=e38]: Ortak alanlar. Ortak özen.
+        - img "Nihai görsel için ayrılmış, taş tonlarında soyut mimari kompozisyon" [ref=e39]:
+          - generic [aria-hidden] [ref=e40]:
+            - generic [ref=e41]: ARIN — MEKÂNA ÖZEN
+            - generic [ref=e52]:
+              - generic [ref=e53]: İyi hissettiren bir karşılama.
+              - generic [ref=e54]: 01 / İZMİR
+          - generic [aria-hidden] [ref=e55]: HER ADIMDA, DAHA İYİ.
+      - generic [ref=e56]:
+        - list "Hizmet yaklaşımımız" [ref=e57]:
+          - listitem [ref=e58]: Profesyonel Ekip
+          - listitem [ref=e61]: Düzenli Hizmet
+          - listitem [ref=e64]: Titiz Çalışma
+        - paragraph [ref=e67]:
+          - generic [ref=e71]: Karşıyaka · Bostanlı · Mavişehir · Çiğli

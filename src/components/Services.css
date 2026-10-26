@@ -1,0 +1,51 @@
+﻿.services { max-width: 1800px; margin-inline: auto; padding: clamp(64px, 7vw, 112px) var(--page-gutter) clamp(64px, 7vw, 112px); scroll-margin-top: 32px; }
+.services:focus { outline: none; }
+.services-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 38px; }
+.section-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: .12em; margin: 0 0 20px; color: var(--color-accent); }
+.section-eyebrow > span { width: 6px; height: 6px; background: currentColor; }
+.services-heading h2 { font-size: clamp(30px, 3vw, 46px); letter-spacing: -.04em; line-height: 1.16; font-weight: 700; margin: 0; }
+.services-heading h2 span { color: var(--color-accent); }
+.services-intro { color: var(--color-muted); font-size: 14px; line-height: 1.8; max-width: 340px; margin: 0 0 3px; }
+.services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.service-card { background: #fff; border: 1px solid var(--color-line); display: flex; flex-direction: column; min-width: 0; position: relative; transition: transform 240ms var(--ease-out), border-color 200ms ease; }
+.service-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: 0 16px 36px -12px #102e6229; opacity: 0; transition: opacity 240ms ease; }
+.service-card:focus-within { border-color: var(--color-accent); }
+.service-card:focus-within::after { opacity: 1; }
+.service-media { aspect-ratio: 4 / 3; position: relative; overflow: hidden; background: var(--color-slide); }
+.service-media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 58% center; transition: transform 280ms var(--ease-out); }
+.service-image-placeholder svg { transition: transform 240ms var(--ease-out); }
+.service-image-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #466b9e; }
+.service-image-placeholder span { font-size: 10px; letter-spacing: .06em; }
+.service-media-insaat-sonrasi { background: var(--color-slide-alt); }
+.service-media-ev-villa { background: var(--color-slide-third); }
+.service-index { position: absolute; top: 14px; left: 14px; display: grid; place-items: center; width: 30px; height: 30px; font-size: 10px; font-weight: 700; color: var(--color-navy); background: var(--color-paper); transition: color 200ms ease, background-color 200ms ease; }
+.service-body { padding: 24px 22px 0; flex: 1; display: flex; flex-direction: column; }
+.service-body h3 { font-size: clamp(18px, 1.45vw, 22px); font-weight: 700; line-height: 1.35; letter-spacing: -.025em; margin: 0 0 14px; }
+.service-body > p { color: var(--color-muted); font-size: 13px; line-height: 1.85; margin: 0 0 26px; }
+.service-quote { margin-top: auto; padding: 18px 0; background: transparent; color: var(--color-accent); border-top: 1px solid var(--color-line); border-radius: 0; justify-content: space-between; font-size: 13px; min-height: 60px; }
+.service-quote svg { transition: transform 200ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover { transform: translateY(-5px); border-color: var(--color-accent); }
+  .service-card:hover::after { opacity: 1; }
+  .service-card:hover .service-media img { transform: scale(1.035); }
+  .service-card:hover .service-image-placeholder svg { transform: translateY(-3px); }
+  .service-card:hover .service-index { color: #fff; background: var(--color-accent); }
+  .service-card:hover .service-quote svg { transform: translate(3px, -3px); }
+  .service-quote:hover { background: transparent; color: var(--color-accent-hover); transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card:hover, .service-card:hover .service-media img,
+  .service-card:hover .service-image-placeholder svg, .service-card:hover .service-quote svg { transform: none; }
+}
+@media (max-width: 1100px) {
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+  .service-body h3 { font-size: 22px; }
+  .service-body { padding-inline: 25px; }
+}
+@media (max-width: 639px) {
+  .services-heading { display: block; margin-bottom: 28px; }
+  .services-intro { margin-top: 20px; font-size: 13px; }
+  .services-grid { grid-template-columns: 1fr; gap: 25px; }
+  .service-body { padding: 23px 23px 0; }
+  .service-body h3 { font-size: 22px; }
+}

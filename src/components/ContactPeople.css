@@ -1,0 +1,23 @@
+﻿.contact-people { list-style: none; margin: 0; padding: 0; max-width: 400px; }
+.contact-person { border-top: 1px solid #ffffff30; padding-block: 21px 16px; }
+.contact-person:last-child { border-bottom: 1px solid #ffffff30; }
+.contact-person h3 { font-size: 17px; line-height: 1.5; margin: 0 0 7px; font-weight: 600; }
+.contact-person a { display: flex; align-items: center; gap: 10px; min-height: 44px; width: fit-content; max-width: 100%; line-height: 1.5; }
+.contact-person a > span { min-width: 0; overflow-wrap: anywhere; }
+.contact-person-phone { font-size: 16px; font-variant-numeric: tabular-nums; }
+.contact-person-whatsapp { font-size: 12px; color: var(--color-on-dark-muted); }
+.contact-person-whatsapp > svg:last-child { transition: transform 200ms var(--ease-out); }
+.contact-person a:focus-visible { outline-color: #a9c8ff; }
+.contact-people-compact .contact-person { border-color: var(--color-line); padding-block: 14px 10px; }
+.contact-people-compact .contact-person h3 { font-size: 13px; margin-bottom: 2px; }
+.contact-people-compact .contact-person-phone { font-size: 13px; color: var(--color-ink); }
+.contact-people-compact .contact-person-whatsapp { color: var(--color-accent); font-size: 11px; }
+.contact-people-compact .contact-person a:focus-visible { outline-color: var(--color-accent); }
+@media (hover: hover) and (pointer: fine) {
+  .contact-person-phone:hover > span { text-decoration: underline; text-underline-offset: 4px; }
+  .contact-person-whatsapp:hover > svg:last-child { transform: translate(2px, -2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-person-whatsapp:hover > svg:last-child { transform: none; }
+}
+@media (max-width: 1023px) { .contact-people { max-width: 620px; } }
