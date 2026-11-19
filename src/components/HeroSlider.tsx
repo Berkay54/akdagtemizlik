@@ -1,6 +1,6 @@
 ﻿import { useCallback, useEffect, useRef, useState } from 'react'
 import type { PointerEvent } from 'react'
-import { ArrowLeft, ArrowRight, Image, Pause, Play } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Image, MapPin, Pause, Play } from 'lucide-react'
 import gsap from 'gsap'
 import { getHeroImageSizes, heroSlides } from '../config/heroSlides'
 
@@ -25,15 +25,15 @@ export function HeroSlider() {
   const requestedSlide = useRef(0)
   const navigationVersion = useRef({ version: 0 })
   const [paused, setPaused] = useState(false)
-  const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
   const [dragging, setDragging] = useState(false)
-  const [visible, setVisible] = useState(() => !document.hidden)
-  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [visible, setVisible] = useState(() => typeof document === 'undefined' || !document.hidden)
+  const [reducedMotion, setReducedMotion] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const viewport = useRef<HTMLDivElement>(null)
   const gesture = useRef<{ id: number; x: number; y: number; horizontal: boolean; panel: HTMLElement } | null>(null)
   const tweens = useRef<gsap.core.Tween[]>([])
-  const playing = !paused && !hovered && !focused && !dragging && visible && !reducedMotion
+  // Auto-advance unless the visitor pauses, drags, tabs into the slider with the keyboard, or the tab is hidden.
+  const playing = !paused && !focused && !dragging && visible
   const selectSlide = useCallback(async (index: number) => {
     const version = ++navigationVersion.current.version
     requestedSlide.current = index
@@ -67,14 +67,14 @@ export function HeroSlider() {
   }, [])
 
   useEffect(() => {
-    if (!visible || reducedMotion) return
+    if (!visible) return
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
     if (connection?.saveData) return
     const timer = window.setTimeout(() => {
       void preloadSlide((active + 1) % heroSlides.length).catch(() => {})
     }, 1500)
     return () => window.clearTimeout(timer)
-  }, [active, visible, reducedMotion])
+  }, [active, visible])
 
   useEffect(() => {
     if (!playing) return
@@ -123,35 +123,47 @@ export function HeroSlider() {
   }
 
   return <div className="hero-slider" role="region" aria-roledescription="slayt gösterisi" aria-label="Temizlik hizmetlerimiz"
-    onPointerEnter={event => { if (event.pointerType !== 'touch') setHovered(true) }}
-    onPointerLeave={() => setHovered(false)}
-    onFocusCapture={() => setFocused(true)}
+    onFocusCapture={event => { if (event.target instanceof Element && event.target.matches(':focus-visible')) setFocused(true) }}
     onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false) }}
   >
-    <div className={`slider-viewport ${dragging ? 'is-dragging' : ''}`} ref={viewport}
-      onPointerDown={startDrag} onPointerMove={drag}
-      onPointerUp={event => finishDrag(event)}
-      onPointerCancel={event => finishDrag(event, true)}
-      onLostPointerCapture={event => finishDrag(event, true)}
-      onDragStart={event => event.preventDefault()}
-    >
-      {heroSlides.map((slide, index) => <div key={slide.id}
-        className={`slide-surface slide-${slide.id} ${active === index ? 'is-active' : ''}`}
-        aria-hidden={active !== index} role="group" aria-roledescription="slayt" aria-label={`${index + 1} / ${heroSlides.length}: ${slide.category}`}
+    <div className="hero-arch">
+      <div className={`slider-viewport ${dragging ? 'is-dragging' : ''}`} ref={viewport}
+        onPointerDown={startDrag} onPointerMove={drag}
+        onPointerUp={event => finishDrag(event)}
+        onPointerCancel={event => finishDrag(event, true)}
+        onLostPointerCapture={event => finishDrag(event, true)}
+        onDragStart={event => event.preventDefault()}
       >
-        {slide.image ? renderedSlides.includes(index) && <img className="slide-image" src={slide.image} srcSet={slide.imageSrcSet} sizes={getHeroImageSizes(index)} width={slide.imageWidth} height={slide.imageHeight} alt={slide.imageAlt} style={{ objectPosition: slide.imagePosition }} decoding="async" fetchPriority={index === 0 ? 'high' : 'auto'} draggable={false} /> : <div className="slide-placeholder" aria-label={slide.imageAlt} role="img"><Image size={42} aria-hidden="true" /><span>{slide.placeholder}</span><small>Görsel alanı</small></div>}
-        <span className="slide-tag">AKDAĞ TEMİZLİK / İZMİR</span>
-        <div className="slide-caption"><span className="slide-category">{slide.category}</span><h2>{slide.title}</h2><p>{slide.description}</p></div>
-      </div>)}
-    </div>
-    <div className="slider-controls">
-      <span className="slide-count"><strong>0{active + 1}</strong><span>/ 0{heroSlides.length}</span></span>
-      <div className="slide-selectors" aria-label="Slayt seçimi">{heroSlides.map((item, index) => <button key={item.id} aria-label={`${index + 1}. slayt: ${item.category}`} aria-pressed={active === index} onClick={() => { void selectSlide(index) }}><span /></button>)}</div>
-      <div className="slide-arrows">
-        <button onClick={() => setPaused(!paused)} aria-label={paused || reducedMotion ? 'Slaytları oynat' : 'Slaytları duraklat'} disabled={reducedMotion} title={reducedMotion ? 'Azaltılmış hareket tercihi nedeniyle otomatik geçiş kapalı' : undefined}>{paused || reducedMotion ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}</button>
-        <button onClick={() => move(-1)} aria-label="Önceki slayt"><ArrowLeft size={19} aria-hidden="true" /></button>
-        <button onClick={() => move(1)} aria-label="Sonraki slayt"><ArrowRight size={19} aria-hidden="true" /></button>
+        {heroSlides.map((slide, index) => <div key={slide.id}
+          className={`slide-surface slide-${slide.id} ${active === index ? 'is-active' : ''}`}
+          aria-hidden={active !== index} role="group" aria-roledescription="slayt" aria-label={`${index + 1} / ${heroSlides.length}: ${slide.category}`}
+        >
+          {slide.image ? renderedSlides.includes(index) && <img className="slide-image" src={slide.image} srcSet={slide.imageSrcSet} sizes={getHeroImageSizes(index)} width={slide.imageWidth} height={slide.imageHeight} alt={slide.imageAlt} style={{ objectPosition: slide.imagePosition }} decoding="async" fetchPriority={index === 0 ? 'high' : 'auto'} draggable={false} /> : <div className="slide-placeholder" aria-label={slide.imageAlt} role="img"><Image size={42} aria-hidden="true" /><span>{slide.placeholder}</span><small>Görsel alanı</small></div>}
+        </div>)}
       </div>
+    </div>
+    <div className="hero-caption">
+      <div className="hero-caption-text" key={active}>
+        <span className="slide-category">0{active + 1} / 0{heroSlides.length} · {heroSlides[active].category}</span>
+        <p className="hero-caption-title">{heroSlides[active].title}</p>
+      </div>
+      <div className="slider-controls">
+        <div className="slide-selectors" aria-label="Slayt seçimi">{heroSlides.map((item, index) => <button key={item.id} aria-label={`${index + 1}. slayt: ${item.category}`} aria-pressed={active === index} onClick={() => { void selectSlide(index) }}>
+          <span>{active === index && <i key={playing ? `play-${active}` : 'static'} className={playing ? 'is-running' : ''} style={{ animationDuration: `${AUTOPLAY_DELAY}ms` }} />}</span>
+        </button>)}</div>
+        <div className="slide-arrows">
+          <button onClick={() => setPaused(!paused)} aria-label={paused ? 'Slaytları oynat' : 'Slaytları duraklat'}>{paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}</button>
+          <button onClick={() => move(-1)} aria-label="Önceki slayt"><ArrowLeft size={16} aria-hidden="true" /></button>
+          <button onClick={() => move(1)} aria-label="Sonraki slayt"><ArrowRight size={16} aria-hidden="true" /></button>
+        </div>
+      </div>
+    </div>
+    <div className="hero-badge" role="img" aria-label="Hizmet bölgeleri: Karşıyaka, Bostanlı, Mavişehir, Çiğli">
+      <svg className="hero-badge-ring" viewBox="0 0 128 128" aria-hidden="true">
+        <defs><path id="hero-badge-path" d="M64,64 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
+        <text><textPath href="#hero-badge-path" textLength="286" lengthAdjust="spacing">KARŞIYAKA · BOSTANLI · MAVİŞEHİR · ÇİĞLİ ·</textPath></text>
+      </svg>
+      <MapPin className="hero-badge-pin" size={24} aria-hidden="true" />
     </div>
     {loadError && <p className="slider-error" role="status">{loadError}</p>}
     <span className="visually-hidden" aria-live={playing ? 'off' : 'polite'} aria-atomic="true">{active + 1} / {heroSlides.length}: {heroSlides[active].category}</span>

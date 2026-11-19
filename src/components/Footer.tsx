@@ -1,7 +1,12 @@
-﻿import { ArrowUp, ArrowUpRight } from 'lucide-react'
+﻿import { useLayoutEffect, useRef } from 'react'
+import { ArrowUp, ArrowUpRight } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ContactPeople } from './ContactPeople'
 import { socialLinks } from '../config/social'
 import './Footer.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const year = new Intl.DateTimeFormat('tr-TR', { year: 'numeric', timeZone: 'Europe/Istanbul' }).format(new Date())
 
@@ -13,11 +18,27 @@ const navigation = [
 ]
 
 export function Footer() {
-  return <footer className="site-footer">
+  const root = useRef<HTMLElement>(null)
+
+  useLayoutEffect(() => {
+    const media = gsap.matchMedia()
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+      const context = gsap.context(() => {
+        gsap.from('.footer-grid > *', {
+          opacity: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.08,
+          scrollTrigger: { trigger: '.footer-grid', start: 'top 88%', once: true },
+        })
+      }, root)
+      return () => context.revert()
+    })
+    return () => media.revert()
+  }, [])
+
+  return <footer className="site-footer" ref={root}>
     <div className="footer-inner">
       <div className="footer-grid">
         <div className="footer-brand">
-          <a className="wordmark" href="#main" aria-label="Akdağ Temizlik ana sayfa">AKDAĞ<span>TEMİZLİK</span></a>
+          <a className="wordmark" href="#main" aria-label="Akdağ Temizlik ana sayfa"><strong>Akdağ</strong><span>TEMİZLİK</span></a>
           <p>Yaşam ve çalışma alanlarınız için düzenli, titiz ve profesyonel temizlik.</p>
           <span className="footer-tagline">İzmir'de her adımda özen.</span>
           <ul className="footer-socials" aria-label="Sosyal medya">
@@ -32,8 +53,10 @@ export function Footer() {
         <div className="footer-column"><h2>Hizmet Bölgelerimiz</h2><ul className="footer-regions">{['Karşıyaka', 'Çiğli', 'Bostanlı', 'Mavişehir'].map(region => <li key={region}>{region}</li>)}</ul><a className="footer-area-link" href="#bolgeler">Bölgeleri inceleyin<ArrowUpRight size={14} aria-hidden="true" /></a></div>
         <div className="footer-column footer-contact"><h2>Birlikte Başlayalım</h2><p>İhtiyacınıza uygun temizlik için bize ulaşın.</p><ContactPeople compact /></div>
       </div>
-      <div className="footer-bottom"><p>© {year} Akdağ Temizlik. Tüm hakları saklıdır.</p><a href="#main" className="footer-top">Başa Dön<ArrowUp size={17} aria-hidden="true" /></a></div>
+      <div className="footer-bottom">
+        <p>© {year} Akdağ Temizlik. Tüm hakları saklıdır.</p>
+        <a href="#main" className="footer-top">Başa Dön<span><ArrowUp size={16} aria-hidden="true" /></span></a>
+      </div>
     </div>
   </footer>
 }
-
