@@ -19,7 +19,7 @@
 .contact .contact-person { display: flex; align-items: flex-start; gap: 18px; padding: 20px 22px; border: 1px solid var(--contact-line); border-radius: 18px; background: #fff; transition: border-color 300ms ease, background-color 300ms ease; }
 .contact .contact-person:last-child { border-bottom: 1px solid var(--contact-line); }
 .contact-person-avatar { display: grid; place-items: center; width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; background: var(--color-ink-strong); color: var(--color-surface); font-size: 15px; font-weight: 800; letter-spacing: .02em; transition: transform 500ms var(--ease-premium); }
-.contact .contact-person h3 { margin: 2px 0 2px; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+.contact .contact-person-name { margin: 2px 0 2px; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
 .contact .contact-person-phone { font-size: 18px; font-weight: 600; }
 .contact .contact-person-phone svg { color: var(--color-primary); }
 .contact .contact-person-whatsapp { min-height: 46px; margin-top: 10px; padding: 0 18px 0 16px; gap: 10px; border-radius: 999px; background: var(--color-primary); color: #fff; font-size: 14px; font-weight: 700; transition: background-color 250ms ease, transform 300ms var(--ease-premium), box-shadow 300ms ease; }
@@ -27,7 +27,7 @@
 
 .contact-area { display: flex; align-items: flex-start; gap: 14px; max-width: 520px; margin-top: 28px; }
 .contact-area > svg { margin-top: 2px; color: var(--color-primary); }
-.contact-area h3 { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
+.contact-area-title { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
 .contact-area p { margin: 0; font-size: 14px; line-height: 1.7; color: var(--contact-muted); }
 
 /* Form card */
@@ -65,7 +65,7 @@
 .contact .contact-submit { position: relative; overflow: hidden; width: 100%; min-height: 64px; justify-content: space-between; gap: 16px; padding: 0 10px 0 28px; border-radius: 999px; background: var(--color-ink-strong); color: var(--color-surface); font-size: 16px; font-weight: 700; text-align: left; isolation: isolate; }
 .contact .contact-submit svg { width: 44px; height: 44px; padding: 13px; box-sizing: border-box; border-radius: 50%; background: var(--color-primary); color: #fff; }
 .contact .contact-submit::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(245 242 236 / 14%) 50%, transparent 65%); transform: translateX(-100%); }
-.contact-form-note { margin: 14px 0 0; font-size: 12px; line-height: 1.7; color: var(--color-text-muted); }
+.contact-form-note { max-width: 420px; margin: 22px auto 0; font-size: 12px; line-height: 1.7; text-align: center; color: var(--color-text-muted); }
 
 @media (hover: hover) and (pointer: fine) {
   .contact .contact-person:hover { border-color: #bcd8e6; box-shadow: 0 18px 40px -28px rgb(14 42 59 / 35%); }

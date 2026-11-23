@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -49,9 +49,9 @@ export function Footer() {
             </li>)}
           </ul>
         </div>
-        <nav className="footer-column" aria-label="Alt menü"><h2>Keşfedin</h2><ul>{navigation.map(item => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}</ul></nav>
-        <div className="footer-column"><h2>Hizmet Bölgelerimiz</h2><ul className="footer-regions">{['Karşıyaka', 'Çiğli', 'Bostanlı', 'Mavişehir'].map(region => <li key={region}>{region}</li>)}</ul><a className="footer-area-link" href="#bolgeler">Bölgeleri inceleyin<ArrowUpRight size={14} aria-hidden="true" /></a></div>
-        <div className="footer-column footer-contact"><h2>Birlikte Başlayalım</h2><p>İhtiyacınıza uygun temizlik için bize ulaşın.</p><ContactPeople compact /></div>
+        <nav className="footer-column" aria-label="Alt menü"><p className="footer-heading">Keşfedin</p><ul>{navigation.map(item => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}</ul></nav>
+        <div className="footer-column"><p className="footer-heading">Hizmet Bölgelerimiz</p><ul className="footer-regions">{['Karşıyaka', 'Çiğli', 'Bostanlı', 'Mavişehir'].map(region => <li key={region}>{region}</li>)}</ul><a className="footer-area-link" href="#bolgeler">Bölgeleri inceleyin<ArrowUpRight size={14} aria-hidden="true" /></a></div>
+        <div className="footer-column footer-contact"><p className="footer-heading">Birlikte Başlayalım</p><p>İhtiyacınıza uygun temizlik için bize ulaşın.</p><ContactPeople compact /></div>
       </div>
       <div className="footer-bottom">
         <p>© {year} Akdağ Temizlik. Tüm hakları saklıdır.</p>

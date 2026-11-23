@@ -15,7 +15,7 @@
 .footer-social-icon.is-pending { opacity: .5; }
 
 /* Columns */
-.footer-column h2 { margin: 0 0 20px; font-size: 12px; font-weight: 700; letter-spacing: .2em; line-height: 1.5; text-transform: uppercase; color: var(--color-primary-text); }
+.footer-heading { margin: 0 0 20px; font-size: 12px; font-weight: 700; letter-spacing: .2em; line-height: 1.5; text-transform: uppercase; color: var(--color-primary-text); }
 .footer-column ul { list-style: none; margin: 0; padding: 0; }
 .footer-column li { font-size: 15px; line-height: 1.7; color: var(--footer-muted); }
 .footer-column li > a { position: relative; display: flex; align-items: center; width: fit-content; min-width: 44px; min-height: 44px; color: var(--color-ink-strong); transition: color 200ms ease; }
@@ -23,13 +23,13 @@
 .footer-regions li { padding-block: 6px; }
 .footer-area-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--color-primary); }
 .footer-area-link svg { transition: transform 300ms var(--ease-premium); }
-.footer-contact > p { max-width: 280px; margin: 0 0 16px; font-size: 15px; line-height: 1.7; color: var(--footer-muted); }
+.footer-contact > p:not(.footer-heading) { max-width: 280px; margin: 0 0 16px; font-size: 15px; line-height: 1.7; color: var(--footer-muted); }
 
 /* Compact contact people */
 .site-footer .contact-people { max-width: 360px; }
 .site-footer .contact-person { padding-block: 16px; border-color: var(--footer-line); }
 .site-footer .contact-person:last-child { border-bottom-color: var(--footer-line); }
-.site-footer .contact-person h3 { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: var(--color-ink-strong); }
+.site-footer .contact-person-name { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: var(--color-ink-strong); }
 .site-footer .contact-person-phone { min-height: 40px; font-size: 16px; font-weight: 600; color: var(--color-ink-strong); }
 .site-footer .contact-person-phone svg { color: var(--color-primary); }
 .site-footer .contact-person-whatsapp { min-height: 44px; margin-top: 6px; padding: 0 16px 0 14px; gap: 8px; border-radius: 999px; background: var(--color-primary); color: #fff; font-size: 13px; font-weight: 700; transition: background-color 250ms ease, transform 300ms var(--ease-premium); }
@@ -57,7 +57,7 @@
 }
 @media (max-width: 639px) {
   .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-  .footer-column h2 { margin-bottom: 12px; font-size: 11px; }
+  .footer-heading { margin-bottom: 12px; font-size: 11px; }
   .footer-contact { padding-top: 28px; border-top: 1px solid var(--footer-line); }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; padding-block: 22px; }
 }

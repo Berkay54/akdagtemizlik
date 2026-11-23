@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { CalendarDays, ScanLine, UsersRound } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -81,8 +81,8 @@ export function About() {
         <figcaption><span>Akdağ Temizlik</span><p>Ortak alanlarda,<br />ortak özen.</p></figcaption>
       </figure>
       <div className="about-content">
-        <p className="section-eyebrow"><span aria-hidden="true" />Hakkımızda</p>
         <h2 id="about-title">
+          <span className="section-eyebrow"><span aria-hidden="true" />Akdağ Temizlik hakkında</span>
           <span className="headline-line"><span>Temiz bir alan.</span></span>
           <span className="headline-line accent"><span>İçiniz rahat bir gün.</span></span>
         </h2>

@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Check, MapPin } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -53,7 +53,9 @@ export function Contact() {
         })
         gsap.timeline({ scrollTrigger: { trigger: '.contact-form', start: 'top 82%', once: true } })
           .from('.contact-form', { clipPath: 'inset(8% 6% 8% 6% round 28px)', opacity: 0, duration: 1.2, ease: 'power4.inOut' })
-          .from('.contact-form > *', { opacity: 0, y: 18, duration: 0.7, ease: 'power3.out', stagger: 0.06 }, 0.5)
+          .from('.contact-form > *:not(.contact-submit)', { opacity: 0, y: 18, duration: 0.7, ease: 'power3.out', stagger: 0.06 }, 0.5)
+          // The submit button has a CSS transform transition (hover lift), so only fade it in.
+          .from('.contact-form > .contact-submit', { opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.9)
       }, root)
       return () => context.revert()
     })
@@ -64,14 +66,14 @@ export function Contact() {
     <div className="contact-glow" aria-hidden="true" />
     <div className="contact-layout">
       <div className="contact-intro">
-        <p className="section-eyebrow"><span aria-hidden="true" />İletişim</p>
         <h2 id="contact-title">
+          <span className="section-eyebrow"><span aria-hidden="true" />İletişim ve fiyat teklifi</span>
           <span className="headline-line"><span>Temiz bir başlangıç</span></span>
           <span className="headline-line accent"><span>bir mesaj uzağınızda.</span></span>
         </h2>
         <p className="contact-description">İhtiyacınızı anlatın, alanınıza uygun temizlik hizmetini birlikte değerlendirelim. Fiyat teklifi için WhatsApp üzerinden bize ulaşabilirsiniz.</p>
         <ContactPeople />
-        <div className="contact-area"><MapPin size={18} aria-hidden="true" /><div><h3>Hizmet bölgelerimiz</h3><p>Karşıyaka · Çiğli · Bostanlı · Mavişehir ve yakın çevresi, İzmir</p></div></div>
+        <div className="contact-area"><MapPin size={18} aria-hidden="true" /><div><p className="contact-area-title">Hizmet bölgelerimiz</p><p>Karşıyaka · Çiğli · Bostanlı · Mavişehir ve yakın çevresi, İzmir</p></div></div>
       </div>
 
       <form className="contact-form" action={`https://wa.me/${WHATSAPP_NUMBER}`} method="get" target="_blank" rel="noopener noreferrer" onSubmit={submit} aria-labelledby="contact-form-title">

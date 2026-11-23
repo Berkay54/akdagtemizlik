@@ -12,10 +12,11 @@
 .regions-copy { max-width: 440px; margin: 0; font-size: 16px; line-height: 1.75; color: var(--color-text-muted); }
 
 /* Accordion list */
-.region-list { list-style: none; margin: 44px 0 0; padding: 0; border-top: 1px solid var(--color-hairline); }
-.region-row { border-bottom: 1px solid var(--color-hairline); }
+.region-list { counter-reset: region; list-style: none; margin: 44px 0 0; padding: 0; border-top: 1px solid var(--color-hairline); }
+.region-row { counter-increment: region; border-bottom: 1px solid var(--color-hairline); }
 .region-row h3 { margin: 0; }
 .region-row button { width: 100%; min-height: 76px; display: flex; align-items: center; gap: 20px; padding: 0; background: none; text-align: left; }
+.region-number::before { content: "0" counter(region); }
 .region-number { width: 28px; flex-shrink: 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--color-primary-text); font-variant-numeric: tabular-nums; }
 .region-name { flex: 1; font-family: var(--font-display); font-size: clamp(24px, 2.3vw, 34px); font-weight: 700; letter-spacing: -.03em; color: var(--color-text-muted); transition: color 300ms ease, transform 500ms var(--ease-premium); }
 .region-toggle { flex-shrink: 0; width: 40px; height: 40px; padding: 10px; box-sizing: border-box; border-radius: 50%; border: 1px solid var(--color-hairline); transition: transform 500ms var(--ease-premium), background-color 300ms ease, border-color 300ms ease, color 300ms ease; }

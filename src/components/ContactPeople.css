@@ -1,7 +1,7 @@
 .contact-people { list-style: none; margin: 0; padding: 0; max-width: 400px; }
 .contact-person { border-top: 1px solid #ffffff30; padding-block: 21px 16px; }
 .contact-person:last-child { border-bottom: 1px solid #ffffff30; }
-.contact-person h3 { font-size: 17px; line-height: 1.5; margin: 0 0 7px; font-weight: 600; }
+.contact-person-name { font-size: 17px; line-height: 1.5; margin: 0 0 7px; font-weight: 600; }
 .contact-person a { display: flex; align-items: center; gap: 10px; min-height: 44px; width: fit-content; max-width: 100%; line-height: 1.5; }
 .contact-person a > span { min-width: 0; overflow-wrap: anywhere; }
 .contact-person-phone { font-size: 16px; font-variant-numeric: tabular-nums; }
@@ -9,7 +9,7 @@
 .contact-person-whatsapp > svg:last-child { transition: transform 200ms var(--ease-out); }
 .contact-person a:focus-visible { outline-color: #0b6e99; }
 .contact-people-compact .contact-person { border-color: var(--color-line); padding-block: 14px 10px; }
-.contact-people-compact .contact-person h3 { font-size: 13px; margin-bottom: 2px; }
+.contact-people-compact .contact-person-name { font-size: 13px; margin-bottom: 2px; }
 .contact-people-compact .contact-person-phone { font-size: 13px; color: var(--color-ink); }
 .contact-people-compact .contact-person-whatsapp { color: var(--color-accent); font-size: 11px; }
 .contact-people-compact .contact-person a:focus-visible { outline-color: var(--color-accent); }

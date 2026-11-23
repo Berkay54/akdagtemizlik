@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { ArrowUpRight, Plus } from 'lucide-react'
 import gsap from 'gsap'
@@ -47,8 +47,10 @@ export function Regions() {
     <div className="regions-layout">
       <div className="regions-left">
         <div className="regions-intro">
-          <p className="section-eyebrow"><span aria-hidden="true" />Hizmet bölgelerimiz</p>
-          <h2 id="regions-title">İzmir'de,<br /><span>size yakınız.</span></h2>
+          <h2 id="regions-title">
+            <span className="section-eyebrow"><span aria-hidden="true" />İzmir hizmet bölgelerimiz</span>
+            İzmir'de,<br /><span>size yakınız.</span>
+          </h2>
           <p className="regions-copy">Karşıyaka, Çiğli, Bostanlı ve Mavişehir başta olmak üzere yakın çevrede yaşam ve çalışma alanlarınıza özenle ulaşıyoruz.</p>
         </div>
         <ul className="region-list" aria-label="Hizmet verdiğimiz bölgeler">
@@ -58,7 +60,7 @@ export function Regions() {
             return <li className={`region-row ${open ? 'is-open' : ''}`} key={region.name} onPointerEnter={event => { if (event.pointerType === 'mouse') setActive(index) }}>
               <h3>
                 <button type="button" aria-expanded={open} aria-controls={panelId} onClick={() => setActive(index)}>
-                  <span className="region-number" aria-hidden="true">0{index + 1}</span>
+                  <span className="region-number" aria-hidden="true" />
                   <span className="region-name">{region.name}</span>
                   <Plus className="region-toggle" size={20} aria-hidden="true" />
                 </button>

@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import { services } from '../config/services'
 import { QuoteLink } from './QuoteLink'
@@ -30,8 +30,10 @@ export function Services() {
   return <section className="services" id="hizmetler" ref={root} aria-labelledby="services-title" tabIndex={-1}>
     <div className="services-heading">
       <div className="reveal">
-        <p className="section-eyebrow"><span aria-hidden="true" />Hizmetlerimiz</p>
-        <h2 id="services-title">Her alana uygun,<br /><span>aynı titiz yaklaşım.</span></h2>
+        <h2 id="services-title">
+          <span className="section-eyebrow"><span aria-hidden="true" />İzmir temizlik hizmetlerimiz</span>
+          Her alana uygun,<br /><span>aynı titiz yaklaşım.</span>
+        </h2>
       </div>
       <p className="services-intro reveal" style={{ '--reveal-delay': '120ms' } as CSSProperties}>Apartmanınızdan iş yerinize, yaşam ve çalışma alanlarınız için ihtiyaçlarınıza uygun profesyonel temizlik.</p>
     </div>
